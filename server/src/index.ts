@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express from "express";
 import helmet from "helmet";
 import logger from "morgan";
+import cookieParser from "cookie-parser";
 import { trim } from "./middleware/trim";
 import { userRt } from "./routes/userRt";
 import { createConnection } from "typeorm";
@@ -27,6 +28,7 @@ import { createConnection } from "typeorm";
     app.use(express.urlencoded({extended: false}));
     app.use(express.json());
     app.use(logger("dev"));
+    app.use(cookieParser());
     app.use(trim);
 
     // Routes and Port
